@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FreelanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerSurname" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerCity" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="customerPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postalCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ServiceRequests" Relationship="Self.FK_ServiceRequest_Customer" FromRole="Customer" ToRole="ServiceRequest" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="departmentCode" />
+    </Key>
+    <Property Name="departmentCode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="departmentName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Freelancers" Relationship="Self.FK_Freelancer_Department" FromRole="Department" ToRole="Freelancer" />
+  </EntityType>
+  <EntityType Name="Freelancer">
+    <Key>
+      <PropertyRef Name="freelancerID" />
+    </Key>
+    <Property Name="freelancerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="freelancerName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="freelancerSurname" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="freelancerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="freelancerPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="freelancerAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postalCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="freelancerWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="occupation" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="bio" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="imageURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Freelancer_Department" FromRole="Freelancer" ToRole="Department" />
+    <NavigationProperty Name="Jobs" Relationship="Self.FK_Job_Freelancer" FromRole="Freelancer" ToRole="Job" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Freelancer" FromRole="Freelancer" ToRole="Rating" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="invoiceNo" />
+    </Key>
+    <Property Name="invoiceNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="invoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="totalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="vat" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="JobCards" Relationship="Self.FK_JobCard_Invoice" FromRole="Invoice" ToRole="JobCard" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="jobCode" />
+    </Key>
+    <Property Name="jobCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jobDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="freelancerID" Type="Int32" />
+    <Property Name="hourlyRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="baseRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="imageURL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Freelancer" Relationship="Self.FK_Job_Freelancer" FromRole="Job" ToRole="Freelancer" />
+  </EntityType>
+  <EntityType Name="JobCard">
+    <Key>
+      <PropertyRef Name="jobcardNo" />
+    </Key>
+    <Property Name="jobcardNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Precision="3" />
+    <Property Name="freelancerID" Type="Int32" Nullable="false" />
+    <Property Name="invoiceNo" Type="Int32" Nullable="false" />
+    <Property Name="serviceID" Type="Int32" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK_JobCard_Invoice" FromRole="JobCard" ToRole="Invoice" />
+    <NavigationProperty Name="ServiceRequest" Relationship="Self.FK_JobCard_ServiceRequest" FromRole="JobCard" ToRole="ServiceRequest" />
+  </EntityType>
+  <EntityType Name="MessageBox">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="messageSubject" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="messageBody" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="creatorID" Type="Int32" />
+    <Property Name="messageDate" Type="DateTime" Precision="3" />
+    <Property Name="parentMessageID" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MessageBox_Users" FromRole="MessageBox" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="MessageRecipient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="recipientID" Type="Int32" Nullable="false" />
+    <Property Name="messageID" Type="Int32" Nullable="false" />
+    <Property Name="isRead" Type="Boolean" Nullable="false" />
+    <Property Name="bookingStatus" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="Self.FK_MessageRecipient_Users" FromRole="MessageRecipient" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="freelancerID" Type="Int32" />
+    <Property Name="rating1" Type="Int32" />
+    <Property Name="serviceDate" Type="DateTime" Precision="3" />
+    <Property Name="ipAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Freelancer" Relationship="Self.FK_Rating_Freelancer" FromRole="Rating" ToRole="Freelancer" />
+  </EntityType>
+  <EntityType Name="ServiceRequest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="requestDate" Type="DateTime" Precision="3" />
+    <Property Name="customerID" Type="Int32" />
+    <Property Name="serviceDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="category" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="expectedDate" Type="DateTime" Precision="3" />
+    <Property Name="budget" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="isApproved" Type="Boolean" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_ServiceRequest_Customer" FromRole="ServiceRequest" ToRole="Customer" />
+    <NavigationProperty Name="JobCards" Relationship="Self.FK_JobCard_ServiceRequest" FromRole="ServiceRequest" ToRole="JobCard" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emailStatus" Type="Boolean" Nullable="false" />
+    <Property Name="currentLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="registerDate" Type="DateTime" Precision="3" />
+    <Property Name="userRole" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MessageBoxes" Relationship="Self.FK_MessageBox_Users" FromRole="Users" ToRole="MessageBox" />
+    <NavigationProperty Name="MessageRecipients" Relationship="Self.FK_MessageRecipient_Users" FromRole="Users" ToRole="MessageRecipient" />
+  </EntityType>
+  <Association Name="FK_ServiceRequest_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Freelancer_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="departmentCode" />
+      </Principal>
+      <Dependent Role="Freelancer">
+        <PropertyRef Name="occupation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Freelancer">
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Job" Type="Self.Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freelancer">
+        <PropertyRef Name="freelancerID" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="freelancerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rating_Freelancer">
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freelancer">
+        <PropertyRef Name="freelancerID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="freelancerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobCard_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobCard" Type="Self.JobCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="invoiceNo" />
+      </Principal>
+      <Dependent Role="JobCard">
+        <PropertyRef Name="invoiceNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobCard_ServiceRequest">
+    <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobCard" Type="Self.JobCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceRequest">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="JobCard">
+        <PropertyRef Name="serviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageBox_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MessageBox" Type="Self.MessageBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MessageBox">
+        <PropertyRef Name="creatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageRecipient_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MessageRecipient" Type="Self.MessageRecipient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MessageRecipient">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FreelanceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Freelancers" EntityType="Self.Freelancer" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="Jobs" EntityType="Self.Job" />
+    <EntitySet Name="JobCards" EntityType="Self.JobCard" />
+    <EntitySet Name="MessageBoxes" EntityType="Self.MessageBox" />
+    <EntitySet Name="MessageRecipients" EntityType="Self.MessageRecipient" />
+    <EntitySet Name="Ratings" EntityType="Self.Rating" />
+    <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequest" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_ServiceRequest_Customer" Association="Self.FK_ServiceRequest_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Freelancer_Department" Association="Self.FK_Freelancer_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Freelancer" EntitySet="Freelancers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Freelancer" Association="Self.FK_Job_Freelancer">
+      <End Role="Freelancer" EntitySet="Freelancers" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Freelancer" Association="Self.FK_Rating_Freelancer">
+      <End Role="Freelancer" EntitySet="Freelancers" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobCard_Invoice" Association="Self.FK_JobCard_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="JobCard" EntitySet="JobCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobCard_ServiceRequest" Association="Self.FK_JobCard_ServiceRequest">
+      <End Role="ServiceRequest" EntitySet="ServiceRequests" />
+      <End Role="JobCard" EntitySet="JobCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageBox_Users" Association="Self.FK_MessageBox_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MessageBox" EntitySet="MessageBoxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageRecipient_Users" Association="Self.FK_MessageRecipient_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MessageRecipient" EntitySet="MessageRecipients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

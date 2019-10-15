@@ -1,0 +1,58 @@
+﻿@model Freelance_System.ViewModels.UserLogin
+@{
+    ViewBag.Title = "Login";
+}
+
+<script src="~/Scripts/buttonHider.js"></script>
+
+<div id="page-wrapper" class="sign-in-wrapper">
+    <div class="graphs">
+        <div class="sign-in-form">
+            <div class="sign-in-form-top">
+                <h1>Log in</h1>
+            </div>
+            <div class="signin">
+                <div class="signin-rit">
+                    <span class="checkbox1">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Forgot Password ?</label>
+                    </span>
+                    <p><a href="#">Click Here</a> </p>
+                    <div class="clearfix"> </div>
+                </div>
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+
+                    <div class="log-input">
+                        <div class="log-input-left">
+                            <label>Username:</label>
+                            <input type="text" class="user" name="username" value="Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Email';}" required />
+                            @*@Html.TextBoxFor(a => a.username)*@
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="log-input">
+                        <div class="log-input-left">
+                            <label>Password: </label>
+                            <input type="password" class="lock" name="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}" required />
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        @Html.ValidationMessage("LoginError")
+                    </div>
+
+                    <input type="submit" value="Log in">
+
+
+                }
+            </div>
+            <div class="new_people">
+                <h2>For New People</h2>
+                <p>
+                    Register on Freelancer to select our top freelancers by their categories and skills.
+                </p>
+                <a href="/Customers/Create">Register Now!</a>
+            </div>
+        </div>
+    </div>
+</div>
+

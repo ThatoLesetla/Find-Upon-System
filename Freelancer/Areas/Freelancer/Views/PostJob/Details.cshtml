@@ -1,0 +1,58 @@
+﻿@model Freelancer.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hourlyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hourlyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baseRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baseRate)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageURL)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FreelancerClient.freelancerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FreelancerClient.freelancerName)
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.jobCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

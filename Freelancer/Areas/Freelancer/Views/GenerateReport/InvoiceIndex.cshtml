@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Freelancer.Models.Invoice>
+
+@{
+    ViewBag.Title = "InvoiceIndex";
+}
+
+<div class="report-header">
+
+    <h2 style="text-align: center">All Invoice Information</h2>
+
+    <div class="export-buttons" style="text-align: center">
+        @Html.ActionLink("Export To Excel", "Reports", new { ReportType = "Excel" }, htmlAttributes: new { @class = "btn btn-success" })
+        @Html.ActionLink("Export To Word", "Reports", new { ReportType = "Word" }, htmlAttributes: new { @class = "btn btn-primary" })
+        @Html.ActionLink("Export To PDF", "Reports", new { ReportType = "PDF" }, htmlAttributes: new { @class = "btn btn-danger" })
+        @Html.ActionLink("Export To Image", "Reports", new { ReportType = "Image" }, htmlAttributes: new { @class = "btn btn-warning" })
+    </div>
+</div>
+
+<!-- Filters-->
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="au-breadcrumb3">
+                    <div class="au-breadcrumb-left">
+
+                        @using (Html.BeginForm("InvoiceIndex", "GenerateReport", FormMethod.Post))
+                        {
+                            <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                <b>Start:</b>
+                                <li class="list-inline-item active">
+                                    <input type="date" class="form-control" name="startTime" id="startTime" required="" min="2012-01-01" max="2019-01-01"/>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span><b>End:</b></span>
+                                </li>
+                                <li class="list-inline-item">
+                                    <input type="date" class="form-control" name="endTime" id="endTime" min="2012-01-01" max="2019-01-01" required=""/>
+                                </li>
+                                <li class="list-inline-item">
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                </li>
+                            </ul>
+                            
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="welcome2-inner m-t-60">
+                    <div class="welcome2-greeting">
+                        <b>Payment Filter: </b>
+                        <br />
+                        <input type="radio" name="Payment" value="Paid" id="Paid" onchange="filterTable()"> Paid<br>
+                        <input type="radio" name="Payment" value="Processing" id="Processing" onchange="filterTable()">Processing<br>
+                        <input type="radio" name="Payment" value="Both" id="Both" onchange="filterTable()"> Both
+                    </div>
+                    <form class="form-header form-header2" action="" method="post">
+                        <input class="au-input au-input--w435" type="text" name="search" placeholder="Search for datas &amp; reports...">
+                        <button class="au-btn--submit" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- END Filters-->
+
+<div class="table-responsive">
+    <table class="table table-borderless table-striped table-earning" id="tableData" style="padding-top: 20px;">
+        <thead>
+            <tr>
+                <th>InvoiceNo</th>
+                <th>ServiceId</th>
+                <th>InvoiceDate</th>
+                <th>Discount</th>
+                <th>Total</th>
+                <th>Vat</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.invoiceNo</td>
+                    <td>@item.serviceID</td>
+                    <td>@item.invoiceDate</td>
+                    <td>@item.discount</td>
+                    <td>@item.totalAmount</td>
+                    <td>@item.vat</td>
+                    @if (item.status == false)
+                    {
+                        <td class="denied">Processing</td>
+                    }
+                    else
+                    {
+                        <td class="process">Paid</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Plugins/dataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/Plugins/dataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $('#tableData').dataTable();
+
+    var rows = document.getElementsByTagName('tr');
+    var paymentCheckBox = document.getElementByName('Payment');
+
+    function filterTable() {
+
+        $(rows).show();
+
+    for (var i = 1; i < rows.length; i++) {
+        let Columns = rows[i].getElementsByTagName('td');
+        let paymentCol = Columns[6];
+      
+        if (document.getElementById('Processing').checked == true) {
+            if (paymentCol.innerHTML == 'Paid') {
+
+                $(rows[i]).hide();
+
+            }
+        }
+
+        
+        if (document.getElementById('Paid').checked == true) {
+            if (paymentCol.innerHTML == 'Processing') {
+                $(rows[i]).hide();
+            }
+        }
+
+        if (document.getElementById('Both').checked == true) {
+            $(rows[i]).show();
+        }
+    }
+
+    }
+    
+</script>
+

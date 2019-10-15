@@ -1,0 +1,115 @@
+﻿@model Freelancer.Models.SummaryReportData
+@{
+    ViewBag.Title = "SummaryReport";
+}
+
+<div class="report-header">
+
+    <h1 style="text-align: center">Summary Report</h1>
+
+    <div class="export-buttons" style="text-align: center">
+        @Html.ActionLink("Export To Excel", "Reports", new { ReportType = "Excel" }, htmlAttributes: new { @class = "btn btn-success" })
+        @Html.ActionLink("Export To Word", "Reports", new { ReportType = "Word" }, htmlAttributes: new { @class = "btn btn-primary" })
+        @Html.ActionLink("Export To PDF", "Reports", new { ReportType = "PDF" }, htmlAttributes: new { @class = "btn btn-danger" })
+        @Html.ActionLink("Export To Image", "Reports", new { ReportType = "Image" }, htmlAttributes: new { @class = "btn btn-warning" })
+    </div>
+</div>
+
+<h3 style="padding: 10px;">Profit Summary</h3>
+<table class="table table-borderless table-striped table-earning">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.servicesRendered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalCustomers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.weeklyEarnings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalEarnings)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.servicesRendered) 
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.totalCustomers)
+            </td>
+            <td>
+                R @Html.DisplayFor(model => model.weeklyEarnings)
+            </td>
+            <td>
+                R @Html.DisplayFor(model => model.totalEarnings)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 style="padding: 10px;">Competitive Summary</h3>
+<table class="table table-borderless table-striped table-earning">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.marketShare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.marketRevenue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numFreelancers)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.marketShare) %
+            </td>
+            <td>
+                R @Html.DisplayFor(model => model.marketRevenue)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.numFreelancers)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3 style="padding-bottom: 10px;">Regional Sales Breakdown</h3>
+<table class="table table-borderless table-striped table-earning">
+    <thead>
+        <tr>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.marketShare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.marketRevenue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numFreelancers)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.marketShare)
+            </td>
+            <td>
+                R @Html.DisplayFor(model => model.marketRevenue)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.numFreelancers)
+            </td>
+        </tr>
+    </tbody>
+</table>

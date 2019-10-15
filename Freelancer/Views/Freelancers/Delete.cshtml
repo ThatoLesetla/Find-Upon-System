@@ -1,0 +1,112 @@
+﻿@model Freelancer.Models.Freelancer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Freelancer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerWebsite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerWebsite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.departmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.departmentName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,267 @@
+﻿@model Freelancer.ViewModels.HomeModel
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+
+
+<!-- Electronic appliances -->
+<div class="total-ads main-grid-border">
+    <div class="container">
+        <div class="select-box">
+            <div class="select-city-for-local-ads ads-list">
+                <label>Select your city to see local ads</label>
+                <select>
+                    <option>Select Location<span><i class="fas fa-location"></i></span></option>
+                    <option>Current Location</option>
+                </select>
+
+            </div>
+            <div class="browse-category ads-list">
+                <label>Browse Categories</label>
+                @Html.DropDownListFor(a => a.departments, new SelectList(Model.departments, "DepartmentCode", "DepartmentName"), "Select Category")
+            </div>
+            <div class="search-product ads-list">
+                <label>Search for a specific product</label>
+                <div class="search">
+                    <div id="custom-search-input">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-lg" id="itemSearch" placeholder="Enter Description" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="ads-grid">
+            <div class="side-bar col-md-3">
+                <div class="search-hotel">
+                    <h3 class="sear-head">Filter By</h3>
+                    <input type="text" class="form-control input-lg" id="itemSearch" placeholder="Enter Description" />
+                </div>
+
+                <div class="range">
+                    <h3 class="sear-head">Filter By Price</h3>
+                    <ul class="dropdown-menu6">
+                        <li>
+                            <div id="slider-range"></div>
+                            <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                        
+
+                        </li>
+                    </ul>
+                    <!---->
+                    <script type="text/javascript" src="~/Content/Customer/js/jquery-ui.js"></script>
+                    <script type='text/javascript'>
+                        //<![CDATA[
+                        $(window).load(function () {
+                            $("#slider-range").slider({
+                                range: true,
+                                min: 0,
+                                max: 9000,
+                                values: [50, 6000],
+                                slide: function (event, ui) {
+                                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                                }
+                            });
+                            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+                        });//]]>
+
+                    </script>
+
+                </div>
+                <div class="brand-select">
+                    <h3 class="sear-head">Filter By Date</h3>
+                    <span>Start: </span><input type="date" id="startTime"/>
+                    <br />
+                    <span>End: </span><input type="date" class="datepicker" id="endTime" />
+                </div>
+                <div class="featured-ads">
+                    <h2 class="sear-head fer">Sponsored Ads</h2>
+                    @{
+                        int count = 0;
+
+                        foreach (var item in Model.trendigAds)
+                        {
+                            <div class="featured-ad">
+                                <a href="/RequestFreelancer/Book/@item.jobCode">
+                                    <div class="featured-ad-left">
+                                        <img src="@Url.Content(item.imageURL)" title="ad image" alt="" />
+                                    </div>
+                                    <div class="featured-ad-right">
+                                        <h4>@item.jobDescription</h4>
+                                        <p>R @item.baseRate</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </div>
+                            if (count >= 3)
+                            {
+                                break;
+                            }
+                            count++;
+                        }
+                    }
+                </div>
+            </div>
+            <div class="ads-display col-md-9">
+                <div class="wrapper">
+                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                                    <span class="text">All Ads</span>
+                                </a>
+                            </li>
+                            @*<li role="presentation" class="next">
+                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                                        <span class="text">Ads with Photos</span>
+                                    </a>
+                                </li>*@
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                <div>
+                                    <div id="container">
+                                       
+                                        <div class="sort">
+                                            <div class="sort-by">
+                                                <label>Sort By : </label>
+                                                <select>
+                                                    <option value="">Most recent</option>
+                                                    <option value="">Price: Rs Low to High</option>
+                                                    <option value="">Price: Rs High to Low</option>
+                                                </select>
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <ul class="list" id="adsList">
+                                            @foreach (var item in Model.trendigAds)
+                                            {
+                                                <a href="/RequestFreelancer/Book/@item.jobCode">
+                                                    <li class="zmdi-collection-item-1">
+                                                        <img src="@Url.Content(item.imageURL)" title="" alt="" />
+                                                        <section class="list-left">
+                                                            <h5 class="title">@item.jobDescription</h5>
+                                                            <span class="adprice">R @item.baseRate</span>
+                                                            <p class="catpath">Department: @item.FreelancerClient.occupation</p>
+                                                        </section>
+                                                        <section class="list-right">
+                                                            <span class="date">@item.datePosted</span>
+                                                            <span class="cityname">@item.FreelancerClient.city</span>
+                                                        </section>
+                                                        <div class="clearfix"></div>
+                                                    </li>
+                                                </a>
+
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                                <div>
+                                    <div id="container">
+                                        <div class="view-controls-list" id="viewcontrols">
+                                            <label>view :</label>
+                                            <a class="gridview"><i class="glyphicon glyphicon-th"></i></a>
+                                            <a class="listview active"><i class="glyphicon glyphicon-th-list"></i></a>
+                                        </div>
+                                        <div class="sort">
+                                            <div class="sort-by">
+                                                <label>Sort By : </label>
+                                                <select>
+                                                    <option value="">Most recent</option>
+                                                    <option value="">Price: Rs Low to High</option>
+                                                    <option value="">Price: Rs High to Low</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <ul class="list">
+                                            @foreach (var item in Model.trendigAds)
+                                            {
+                                                <a href="/RequestFreelancer/Book/@item.jobCode">
+                                                    <li>
+                                                        <img src="@Url.Content(item.imageURL)" title="" alt="" />
+                                                        <section class="list-left">
+                                                            <h5 class="title">@item.jobDescription</h5>
+                                                            <span class="adprice">R @item.baseRate</span>
+                                                            <p class="catpath">Department: @item.FreelancerClient.occupation</p>
+                                                        </section>
+                                                        <section class="list-right">
+                                                            <span class="date">@item.datePosted</span>
+                                                            <span class="cityname">@item.FreelancerClient.city</span>
+                                                        </section>
+                                                        <div class="clearfix"></div>
+                                                    </li>
+                                                </a>
+
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="pagination pagination-sm">
+                                <li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- // Electronic appliances -->
+<script>
+    var searchBox = document.getElementById('itemSearch');
+    var catecorgyList = document.getElementById('departments');
+    var startDate = document.getElementById('startTime').value;
+    var endDate = document.getElementById('endTime').value;
+   
+
+    searchBox.addEventListener('keyup', filterList);
+    catecorgyList.addEventListener('change', filterList);
+
+    function filterList() {
+        var searchBoxValue = document.getElementById('itemSearch').value.toUpperCase();
+        var category = document.getElementById('departments').value.toUpperCase();
+       
+        console.log(startDate.toString());
+        // Get Items From List
+        var ul = document.getElementById('adsList');
+        var items = ul.querySelectorAll('li');
+        console.log()
+
+        for (var i = 0; i < items.length; i++) {
+            console.log(items[i].getElementsByTagName('h5'));
+            let item = items[i].getElementsByTagName('h5')[0];
+            let itemDepartment = items[i].getElementsByTagName('p')[0];
+
+            if (item.innerHTML.toUpperCase().indexOf(searchBoxValue) > -1 && itemDepartment.innerHTML.toUpperCase().indexOf(category) > -1) {
+                items[i].style.display = '';
+            } else {
+                items[i].style.display = 'none';
+            }
+
+        }
+    }
+
+
+</script>

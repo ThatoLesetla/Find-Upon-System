@@ -1,0 +1,81 @@
+﻿@model Freelancer.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<br />
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,64 @@
+﻿@model Freelancer.Models.Job
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.jobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hourlyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hourlyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baseRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baseRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FreelancerClient.freelancerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FreelancerClient.freelancerName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

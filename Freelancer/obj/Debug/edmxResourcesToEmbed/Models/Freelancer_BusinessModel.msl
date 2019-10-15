@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FreelanceModelStoreContainer" CdmEntityContainer="FreelanceDbContext">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="FreelanceModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="customerSurname" ColumnName="customerSurname" />
+          <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
+          <ScalarProperty Name="customerCity" ColumnName="customerCity" />
+          <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+          <ScalarProperty Name="customerPhone" ColumnName="customerPhone" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="FreelanceModel.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="departmentCode" ColumnName="departmentCode" />
+          <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageBoxes">
+      <EntityTypeMapping TypeName="FreelanceModel.MessageBox">
+        <MappingFragment StoreEntitySet="MessageBox">
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="messageSubject" ColumnName="messageSubject" />
+          <ScalarProperty Name="messageBody" ColumnName="messageBody" />
+          <ScalarProperty Name="creatorID" ColumnName="creatorID" />
+          <ScalarProperty Name="messageDate" ColumnName="messageDate" />
+          <ScalarProperty Name="parentMessageID" ColumnName="parentMessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="FreelanceModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="freelancerID" ColumnName="freelancerID" />
+          <ScalarProperty Name="rating1" ColumnName="rating" />
+          <ScalarProperty Name="serviceDate" ColumnName="serviceDate" />
+          <ScalarProperty Name="ipAddress" ColumnName="ipAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FreelanceModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FreelancerClients">
+      <EntityTypeMapping TypeName="FreelanceModel.FreelancerClient">
+        <MappingFragment StoreEntitySet="FreelancerClient">
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="occupation" ColumnName="occupation" />
+          <ScalarProperty Name="freelancerWebsite" ColumnName="freelancerWebsite" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="freelancerAddress" ColumnName="freelancerAddress" />
+          <ScalarProperty Name="freelancerPhone" ColumnName="freelancerPhone" />
+          <ScalarProperty Name="freelancerEmail" ColumnName="freelancerEmail" />
+          <ScalarProperty Name="freelancerSurname" ColumnName="freelancerSurname" />
+          <ScalarProperty Name="freelancerName" ColumnName="freelancerName" />
+          <ScalarProperty Name="freelancerID" ColumnName="freelancerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FreelanceModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="freelancerID" ColumnName="freelancerID" />
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+          <ScalarProperty Name="emailStatus" ColumnName="emailStatus" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="FreelanceModel.Job">
+        <MappingFragment StoreEntitySet="Job">
+          <ScalarProperty Name="datePosted" ColumnName="datePosted" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="baseRate" ColumnName="baseRate" />
+          <ScalarProperty Name="hourlyRate" ColumnName="hourlyRate" />
+          <ScalarProperty Name="freelancerID" ColumnName="freelancerID" />
+          <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
+          <ScalarProperty Name="jobCode" ColumnName="jobCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_FreelancerBooking" FunctionName="FreelanceModel.Store.SP_FreelancerBooking" />
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="FreelanceModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="serviceID" ColumnName="serviceID" />
+          <ScalarProperty Name="vat" ColumnName="vat" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="invoiceDate" ColumnName="invoiceDate" />
+          <ScalarProperty Name="invoiceNo" ColumnName="invoiceNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceRequests">
+      <EntityTypeMapping TypeName="FreelanceModel.ServiceRequest">
+        <MappingFragment StoreEntitySet="ServiceRequest">
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="jobCode" ColumnName="jobCode" />
+          <ScalarProperty Name="verified" ColumnName="verified" />
+          <ScalarProperty Name="serviceDescription" ColumnName="serviceDescription" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageRecipients">
+      <EntityTypeMapping TypeName="FreelanceModel.MessageRecipient">
+        <MappingFragment StoreEntitySet="MessageRecipient">
+          <ScalarProperty Name="isRead" ColumnName="isRead" />
+          <ScalarProperty Name="messageID" ColumnName="messageID" />
+          <ScalarProperty Name="recipientID" ColumnName="recipientID" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

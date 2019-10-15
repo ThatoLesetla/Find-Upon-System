@@ -1,0 +1,95 @@
+﻿@model Freelancer.Models.ServiceRequest
+
+@{
+    ViewBag.Title = "ServiceRequest";
+}
+
+<div class="submit-ad main-grid-border">
+    <div class="container">
+        <h2 class="head">What Services are you looking for?</h2>
+        <div class="post-ad-form">
+            @using (Html.BeginForm("ServiceRequest", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>ServiceRequest</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.requestDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.requestDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.requestDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.customerID, "customerID", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("customerID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.customerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.serviceDescription, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        @Html.TextAreaFor(model => model.serviceDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.serviceDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class = "control-label col-md-3">Choose Category</label>
+                    <div class="col-md-6">
+                        @Html.DropDownList("Category", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.isApproved, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.isApproved)
+                            @Html.ValidationMessageFor(model => model.isApproved, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+                
+                <div class="form-group">
+                    @Html.LabelFor(model => model.deliveryDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-5">
+                        <input type="date" class="form-control" name="deliveryDate"/>
+                    </div>
+                </div>
+
+                <div class="form-group" >
+                    @Html.LabelFor(model => model.budget, htmlAttributes: new {  @class="control-label col-md-3"})
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.budget, new {  htmlAttributes = new { @class="form-control"}})
+                        @Html.ValidationMessageFor(model => model.budget, "", new { @class="text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-5">
+                        <input type="submit" value="Post" class="btn btn-default" />
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ActionLink("Back to Menus", "Index")
+                </div>
+
+            </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+<!-- // Submit Ad -->

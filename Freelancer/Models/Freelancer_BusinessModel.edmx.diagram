@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="69653e10e961424facc734060079faa2" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="FreelanceModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelanceModel.Department" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelanceModel.MessageBox" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelanceModel.Rating" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelanceModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FreelanceModel.FreelancerClient" Width="1.5" PointX="3" PointY="11.625" />
+        <AssociationConnector Association="FreelanceModel.FK_Freelancer_Department1" />
+        <AssociationConnector Association="FreelanceModel.FK_Rating_Freelancer1" />
+        <EntityTypeShape EntityType="FreelanceModel.User" Width="1.5" PointX="6" PointY="5.625" />
+        <AssociationConnector Association="FreelanceModel.FK_Users_Customer" />
+        <AssociationConnector Association="FreelanceModel.FK_Users_Freelancer" />
+        <AssociationConnector Association="FreelanceModel.FK_MessageBox_Users" />
+        <EntityTypeShape EntityType="FreelanceModel.Job" Width="1.5" PointX="6" PointY="10.375" />
+        <AssociationConnector Association="FreelanceModel.FK_Job_Freelancer" />
+        <EntityTypeShape EntityType="FreelanceModel.Invoice" Width="1.5" PointX="13.5" PointY="5.75" />
+        <EntityTypeShape EntityType="FreelanceModel.ServiceRequest" Width="1.5" PointX="11.25" PointY="5.125" />
+        <AssociationConnector Association="FreelanceModel.FK_ServiceRequest_Customer" />
+        <AssociationConnector Association="FreelanceModel.FK_Invoice_ServiceRequest" />
+        <AssociationConnector Association="FreelanceModel.FK_ServiceRequest_Job" />
+        <EntityTypeShape EntityType="FreelanceModel.MessageRecipient" Width="1.5" PointX="8.25" PointY="8.25" />
+        <AssociationConnector Association="FreelanceModel.FK_MessageRecipient_Users" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

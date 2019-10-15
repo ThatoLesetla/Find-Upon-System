@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FreelanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customerName" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="customerSurname" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="customerAddress" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="customerCity" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="customerEmail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="customerPhone" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="postalCode" Type="varchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="departmentCode" />
+    </Key>
+    <Property Name="departmentCode" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="departmentName" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Freelancer">
+    <Key>
+      <PropertyRef Name="freelancerID" />
+    </Key>
+    <Property Name="freelancerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="freelancerName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="freelancerSurname" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="freelancerEmail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="freelancerPhone" Type="varchar" MaxLength="10" />
+    <Property Name="freelancerAddress" Type="varchar" MaxLength="80" />
+    <Property Name="city" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="postalCode" Type="varchar" MaxLength="4" />
+    <Property Name="freelancerWebsite" Type="varchar" MaxLength="100" />
+    <Property Name="occupation" Type="varchar" MaxLength="8" />
+    <Property Name="bio" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="imageURL" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="invoiceNo" />
+    </Key>
+    <Property Name="invoiceNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="invoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="discount" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="totalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="vat" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="jobCode" />
+    </Key>
+    <Property Name="jobCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jobDescription" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="freelancerID" Type="int" />
+    <Property Name="hourlyRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="baseRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="imageURL" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="JobCard">
+    <Key>
+      <PropertyRef Name="jobcardNo" />
+    </Key>
+    <Property Name="jobcardNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="startDate" Type="datetime" Nullable="false" />
+    <Property Name="endDate" Type="datetime" />
+    <Property Name="freelancerID" Type="int" Nullable="false" />
+    <Property Name="invoiceNo" Type="int" Nullable="false" />
+    <Property Name="serviceID" Type="int" />
+  </EntityType>
+  <EntityType Name="MessageBox">
+    <Key>
+      <PropertyRef Name="messageID" />
+    </Key>
+    <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="messageSubject" Type="varchar" MaxLength="30" />
+    <Property Name="messageBody" Type="varchar" MaxLength="500" />
+    <Property Name="creatorID" Type="int" />
+    <Property Name="messageDate" Type="datetime" />
+    <Property Name="parentMessageID" Type="int" />
+  </EntityType>
+  <EntityType Name="MessageRecipient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="recipientID" Type="int" Nullable="false" />
+    <Property Name="messageID" Type="int" Nullable="false" />
+    <Property Name="isRead" Type="bit" Nullable="false" />
+    <Property Name="bookingStatus" Type="bit" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="freelancerID" Type="int" />
+    <Property Name="rating" Type="int" />
+    <Property Name="serviceDate" Type="datetime" />
+    <Property Name="ipAddress" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ServiceRequest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="requestDate" Type="datetime" />
+    <Property Name="customerID" Type="int" />
+    <Property Name="serviceDescription" Type="varchar" MaxLength="200" />
+    <Property Name="category" Type="varchar" MaxLength="60" />
+    <Property Name="expectedDate" Type="datetime" />
+    <Property Name="budget" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="isApproved" Type="bit" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="emailStatus" Type="bit" Nullable="false" />
+    <Property Name="currentLocation" Type="varchar" MaxLength="500" />
+    <Property Name="registerDate" Type="datetime" />
+    <Property Name="userRole" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_Freelancer_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="departmentCode" />
+      </Principal>
+      <Dependent Role="Freelancer">
+        <PropertyRef Name="occupation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Freelancer">
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Job" Type="Self.Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freelancer">
+        <PropertyRef Name="freelancerID" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="freelancerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobCard_Invoice">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobCard" Type="Self.JobCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="invoiceNo" />
+      </Principal>
+      <Dependent Role="JobCard">
+        <PropertyRef Name="invoiceNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobCard_ServiceRequest">
+    <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JobCard" Type="Self.JobCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceRequest">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="JobCard">
+        <PropertyRef Name="serviceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageBox_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MessageBox" Type="Self.MessageBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MessageBox">
+        <PropertyRef Name="creatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageRecipient_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MessageRecipient" Type="Self.MessageRecipient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MessageRecipient">
+        <PropertyRef Name="recipientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rating_Freelancer">
+    <End Role="Freelancer" Type="Self.Freelancer" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freelancer">
+        <PropertyRef Name="freelancerID" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="freelancerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceRequest_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ServiceRequest" Type="Self.ServiceRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="ServiceRequest">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FreelanceModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Freelancer" EntityType="Self.Freelancer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobCard" EntityType="Self.JobCard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageBox" EntityType="Self.MessageBox" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessageRecipient" EntityType="Self.MessageRecipient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceRequest" EntityType="Self.ServiceRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Freelancer_Department" Association="Self.FK_Freelancer_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Freelancer" EntitySet="Freelancer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Freelancer" Association="Self.FK_Job_Freelancer">
+      <End Role="Freelancer" EntitySet="Freelancer" />
+      <End Role="Job" EntitySet="Job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobCard_Invoice" Association="Self.FK_JobCard_Invoice">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="JobCard" EntitySet="JobCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobCard_ServiceRequest" Association="Self.FK_JobCard_ServiceRequest">
+      <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+      <End Role="JobCard" EntitySet="JobCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageBox_Users" Association="Self.FK_MessageBox_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MessageBox" EntitySet="MessageBox" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageRecipient_Users" Association="Self.FK_MessageRecipient_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="MessageRecipient" EntitySet="MessageRecipient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Freelancer" Association="Self.FK_Rating_Freelancer">
+      <End Role="Freelancer" EntitySet="Freelancer" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceRequest_Customer" Association="Self.FK_ServiceRequest_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="ServiceRequest" EntitySet="ServiceRequest" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

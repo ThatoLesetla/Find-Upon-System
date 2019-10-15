@@ -1,0 +1,74 @@
+﻿@model Freelancer.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registerDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registerDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userRole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.customerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.customerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FreelancerClient.freelancerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FreelancerClient.freelancerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

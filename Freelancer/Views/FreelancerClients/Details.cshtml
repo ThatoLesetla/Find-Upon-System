@@ -1,0 +1,106 @@
+﻿@model Freelancer.Models.FreelancerClient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FreelancerClient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.freelancerWebsite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.freelancerWebsite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.departmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.departmentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.freelancerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

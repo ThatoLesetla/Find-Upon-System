@@ -1,0 +1,520 @@
+﻿@{ 
+    int id = Convert.ToInt32(Session["memberID"].ToString());
+    int userId = Convert.ToInt32(Session["userId"].ToString());
+    string email = Session["email"].ToString();
+    string username = Session["userName"].ToString();
+    string imageURL = Session["imageURL"].ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/Freelancer/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Plugins/dataTables/media/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+    <!-- Title Page-->
+    <title>Member | Dashboard</title>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop3 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
+                    <div class="header__logo">
+                        <a href="/Freelancer/MemberHome/Index">
+                            <img src="~/images/1.png" alt="Freelancer" />
+                        </a>
+                    </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li class="has-sub">
+                                <a href="/Freelancer/memberhome/index">
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                                    <span class="bot-line"></span>
+                                </a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="#">
+                                    <i class="fas fa-desktop"></i>
+                                    <span class="bot-line"></span>Bookings
+                                </a>
+                                <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="/Freelancer/PostJob/Index"> Post Ad</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/Bookings/FreelancerRequests">Freelancer Requests</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/Memberhome/ComingSoon">Bookings</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/Memberhome/ComingSoon">Active Bookings</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/Memberhome/ComingSoon">Priority Bookings</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/Bookings/CompletedBooking">Completed</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/Freelancer/Earnings">
+                                    <i class="fas fa-money-bill-alt"></i>
+                                    <span class="bot-line"></span>Billing
+                                </a>
+                            </li>
+                            <li class="has-sub">
+
+                                <a href="#">
+                                    <i class="fas fa-copy"></i>
+                                    <span class="bot-line"></span>Analytics
+                                </a>
+                                <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="/Freelancer/MemberHome/ComingSoon">Overview</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/MemberHome/ComingSoon">Exception Report</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/GenerateReport/InvoiceIndex">Detail Report</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Freelancer/GenerateReport/SummaryReport">Summary Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-chart-bar"></i>Inbox
+                                    <span class="inbox-num">3</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header__tool">
+                        <div class="header-button-item has-noti js-item-menu">
+                            <i class="zmdi zmdi-notifications"></i>
+                            <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
+                                <div class="notifi__title">
+                                    <p>You have 3 Notifications</p>
+                                </div>
+                                <div class="notifi__item">
+                                    <div class="bg-c1 img-cir img-40">
+                                        <i class="zmdi zmdi-email-open"></i>
+                                    </div>
+                                    <div class="content">
+                                        <p>You got a email notification</p>
+                                        <span class="date">April 12, 2018 06:50</span>
+                                    </div>
+                                </div>
+                                <div class="notifi__item">
+                                    <div class="bg-c2 img-cir img-40">
+                                        <i class="zmdi zmdi-account-box"></i>
+                                    </div>
+                                    <div class="content">
+                                        <p>Your account has been blocked</p>
+                                        <span class="date">April 12, 2018 06:50</span>
+                                    </div>
+                                </div>
+                                <div class="notifi__item">
+                                    <div class="bg-c3 img-cir img-40">
+                                        <i class="zmdi zmdi-file-text"></i>
+                                    </div>
+                                    <div class="content">
+                                        <p>You got a new file</p>
+                                        <span class="date">April 12, 2018 06:50</span>
+                                    </div>
+                                </div>
+                                <div class="notifi__footer">
+                                    <a href="#">All notifications</a>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="header-button-item js-item-menu">
+                                <i class="zmdi zmdi-settings"></i>
+                                <div class="setting-dropdown js-dropdown">
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-account"></i>Account
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-settings"></i>Setting
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-money-box"></i>Billing
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-globe"></i>Language
+                                            </a>
+                                        </div>
+
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-email"></i>Email
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="#">
+                                                <i class="zmdi zmdi-notifications"></i>Notifications
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="account-wrap">
+                            <div class="account-item account-item--style2 clearfix js-item-menu">
+                                <div class="image">
+                                    <img src="@Url.Content(imageURL)" alt="Freelancer" />
+                                </div>
+                                <div class="content">
+                                    <a class="js-acc-btn" href="#">@Session["userName"].ToString()</a>
+                                </div>
+                                <div class="account-dropdown js-dropdown">
+                                    <div class="info clearfix">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="@Url.Content(imageURL)" alt="John Doe" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="name">
+                                                <a href="/Freelancer/MemberHome/ComingSoon">@username</a>
+                                            </h5>
+                                            <span class="email">@email</span>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__body">
+                                        <div class="account-dropdown__item">
+                                            <a href="/Freelancer/UpdateProfile/Edit/@id">
+                                                <i class="zmdi zmdi-settings"></i>Personal Settings
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="/Freelancer/UpdateProfile/UserEdit/@userId">
+                                                <i class="zmdi zmdi-account"></i>Account
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="/Freelancer/MemberHome/ComingSoon">
+                                                <i class="zmdi zmdi-pin"></i>Location
+                                            </a>
+                                        </div>
+                                        <div class="account-dropdown__item">
+                                            <a href="/Freelancer/Earnings">
+                                                <i class="zmdi zmdi-money-box"></i>Billing
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="account-dropdown__footer">
+                                        <a href="/Freelancer/MemberHome/Logout">
+                                            <i class="zmdi zmdi-power"></i>Logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile header-mobile-2 d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a class="logo" href="index.html">
+                            <img src="images/icon/logo-white.png" alt="CoolAdmin" />
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Charts
+                            </a>
+                        </li>
+                        <li>
+                            <a href="table.html">
+                                <i class="fas fa-table"></i>Tables
+                            </a>
+                        </li>
+                        <li>
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-calendar-alt"></i>Calendar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="map.html">
+                                <i class="fas fa-map-marker-alt"></i>Maps
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-copy"></i>Pages
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
+                                <li>
+                                    <a href="forget-pass.html">Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements
+                            </a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="button.html">Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">Fontawesome Icon</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">Typography</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="sub-header-mobile-2 d-block d-lg-none">
+            <div class="header__tool">
+                <div class="header-button-item has-noti js-item-menu">
+                    <i class="zmdi zmdi-notifications"></i>
+                    <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown">
+                        <div class="notifi__title">
+                            <p>You have 3 Notifications</p>
+                        </div>
+                        <div class="notifi__item">
+                            <div class="bg-c1 img-cir img-40">
+                                <i class="zmdi zmdi-email-open"></i>
+                            </div>
+                            <div class="content">
+                                <p>You got a email notification</p>
+                                <span class="date">April 12, 2018 06:50</span>
+                            </div>
+                        </div>
+                        <div class="notifi__item">
+                            <div class="bg-c2 img-cir img-40">
+                                <i class="zmdi zmdi-account-box"></i>
+                            </div>
+                            <div class="content">
+                                <p>Your account has been blocked</p>
+                                <span class="date">April 12, 2018 06:50</span>
+                            </div>
+                        </div>
+                        <div class="notifi__item">
+                            <div class="bg-c3 img-cir img-40">
+                                <i class="zmdi zmdi-file-text"></i>
+                            </div>
+                            <div class="content">
+                                <p>You got a new file</p>
+                                <span class="date">April 12, 2018 06:50</span>
+                            </div>
+                        </div>
+                        <div class="notifi__footer">
+                            <a href="#">All notifications</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-button-item js-item-menu">
+                    <i class="zmdi zmdi-settings"></i>
+                    <div class="setting-dropdown js-dropdown">
+                        <div class="account-dropdown__body">
+                            <div class="account-dropdown__item">
+                                <a href="#">
+                                    <i class="zmdi zmdi-account"></i>Account
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="#">
+                                    <i class="zmdi zmdi-settings"></i>Setting
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="#">
+                                    <i class="zmdi zmdi-money-box"></i>Billing
+                                </a>
+                            </div>
+                        </div>
+                        <div class="account-dropdown__body">
+                            <div class="account-dropdown__item">
+                                <a href="#">
+                                    <i class="zmdi zmdi-globe"></i>Language
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Freelancer/MemberHome/ComingSoon">
+                                    <i class="zmdi zmdi-pin"></i>Location
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="/Freelancer/MemberHome/ComingSoon">
+                                    <i class="zmdi zmdi-email"></i>Email
+                                </a>
+                            </div>
+                            <div class="account-dropdown__item">
+                                <a href="#">
+                                    <i class="zmdi zmdi-notifications"></i>Notifications
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-wrap">
+                    <div class="account-item account-item--style2 clearfix js-item-menu">
+                        <div class="image">
+                            <img src="images/icon/avatar-01.jpg" alt="User Image" />
+                        </div>
+                        <div class="content">
+                            <a class="js-acc-btn" href="#">john doe</a>
+                        </div>
+                        <div class="account-dropdown js-dropdown">
+                            <div class="info clearfix">
+                                <div class="image">
+                                    <a href="#">
+                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="name">
+                                        <a href="#">john doe</a>
+                                    </h5>
+                                    <span class="email">johndoe@example.com</span>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__body">
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-account"></i>Account
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-settings"></i>Setting
+                                    </a>
+                                </div>
+                                <div class="account-dropdown__item">
+                                    <a href="#">
+                                        <i class="zmdi zmdi-money-box"></i>Billing
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="account-dropdown__footer">
+                                <a href="#">
+                                    <i class="zmdi zmdi-power"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END HEADER MOBILE -->
+        <!-- PAGE CONTENT-->
+        <div class="page-content--bgf7">
+            <!-- Page Content Goes Here-->
+
+            <div class="container body-content">
+                @RenderBody()
+
+            </div>
+            <!-- End of Page Content-->
+            <!-- COPYRIGHT-->
+            <section class="p-t-60 p-b-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Unix Technologies. All rights reserved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END COPYRIGHT-->
+        </div>
+
+    </div>
+    
+    @Scripts.Render("~/Content/Freelancer/js")
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>
+<!-- end document-->

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Freelancer.Models.ServiceRequest>
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Bookings</h2>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Job Code</th>
+                <th>Freelancer Email</th>
+                <th>Freelancer Phone</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Hourly Rate</th>
+                <th>Base Rate</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.jobCode</td>
+                    <td>@item.Job.FreelancerClient.freelancerEmail</td>
+                    <td>@item.Job.FreelancerClient.freelancerPhone</td>
+                        @if(item.verified == true)
+                        {
+                            <td class="process">Approved</td>
+                        } else
+                        {
+                            <td class="denied">Processing</td>
+                        }
+                    <td>@item.requestDate</td>
+                    <td>@item.Job.hourlyRate</td>
+                    <td>@item.Job.baseRate</td>
+                    <td>
+                        @Html.ActionLink("View", "Edit", new { id = item.id }, htmlAttributes: new { @class = "btn btn-success" })
+                        @Html.ActionLink("Print", "GetInvoice", new { id = item.id}, htmlAttributes: new { @class="btn btn-info"})
+                        @Html.ActionLink("Cancel", "Delete", new { id = item.id}, htmlAttributes: new { @class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

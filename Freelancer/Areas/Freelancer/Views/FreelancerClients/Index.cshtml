@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Freelancer.Models.FreelancerClient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerSurname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.freelancerWebsite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.departmentName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerSurname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.freelancerWebsite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imageURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.departmentName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.freelancerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.freelancerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.freelancerID })
+        </td>
+    </tr>
+}
+
+</table>

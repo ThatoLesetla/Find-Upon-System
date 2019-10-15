@@ -1,0 +1,144 @@
+﻿@model Freelancer.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <script src="~/Scripts/buttonHider.js"></script>
+    <div class="submit-ad main-grid-border">
+        <div class="container">
+            <h2 class="head">Account Details</h2>
+            <div class="post-ad-form">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            Personal Information
+                        </li>
+                        <li>
+                            <a href="/Users/Create">
+                                Account Details
+                            </a>
+                        </li>
+                    </ol>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @*<div class="form-group">
+            @Html.LabelFor(model => model.userID, "userID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("userID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", @placeholder="Enter Username" } })
+                            @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Enter Password</label>
+                        <div class="col-md-10">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" onkeyup="check()" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-1">Confirm Password</label>
+                        <div class="col-md-10">
+                            <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Confirm Password" onkeyup="check()" required />
+                            <ul>
+                                <li id="lengthCheck">Password must be at least 8 characters</li>
+                                <li id="symbolsCheck">Password must contain symbols</li>
+                                <li id="message"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+          
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.HiddenFor(model => model.emailStatus)
+                    @Html.ValidationMessageFor(model => model.emailStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+                    <div class="form-group">
+        
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.registerDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.registerDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="form-group">
+       
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.userRole, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.userRole, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="form-group">
+           
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.freelancerID)
+                @Html.ValidationMessageFor(model => model.freelancerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                }
+               
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var check = function () {
+            var expression = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/gi;
+            var regex = new RegExp(expression);
+
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+
+            if (password.length < 8) {
+                document.getElementById('lengthCheck').style.color = 'red';
+                return false;
+            } else {
+                document.getElementById('lengthCheck').style.color = 'green';
+            }
+
+            if (!password.match(regex)) {
+                document.getElementById('symbolsCheck').style.color = 'red';
+                return false;
+
+            } else {
+                document.getElementById('symbolsCheck').style.color = 'green';
+            }
+
+            if (password == confirm_password && password.length) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+                return false;
+            }
+        }
+    </script>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Freelancer.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.jobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hourlyRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.baseRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FreelancerClient.freelancerName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.jobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hourlyRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.baseRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imageURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FreelancerClient.freelancerName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.jobCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.jobCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.jobCode })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,238 @@
+﻿@model Freelancer.Areas.Freelancer.ViewModels.BillingViewMode
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- PAGE CONTENT-->
+<div class="page-container3">
+    <section class="alert-wrap p-t-70 p-b-70">
+        <h2>Manage Invoices</h2>
+        <br />
+        <div class="container">
+            <!-- ALERT-->
+            <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
+                <i class="zmdi zmdi-check-circle"></i>
+                <span class="content">You successfully read this important alert message.</span>
+                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="zmdi zmdi-close-circle"></i>
+                    </span>
+                </button>
+            </div>
+            <!-- END ALERT-->
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3">
+                    <!-- Invoice SIDEBAR-->
+                    <div class="card">
+                        <div class="card-header">Generate Customer Invoice</div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h3 class="text-center title-2">Invoice</h3>
+                            </div>
+                            <hr>
+                            @using(Html.BeginForm("GenerateInvoice", "Earnings", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <label class="col-md-10">
+                                        Customer Email
+                                    </label>
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("CustomerEmails", null, htmlAttributes: new { @class="form-control", @required=""})
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-10">Service ID</label>
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("ServiceIDs", null, htmlAttributes: new { @class = "form-control", @required=""})
+                                        </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-10">Total Hours</label>
+                                    <div class="col-md-10">
+                                        <input type="number" class="form-control" name="hourlyRate" placeholder="Enter Amount" min="1" required />
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Send" class="col-md-10 btn btn-primary" />
+                            }
+                        </div>
+                    </div>
+                    <!-- END MENU SIDEBAR-->
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Payment Alerts</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
+                                <span class="badge badge-pill badge-primary">Success</span>
+                                You successfully read this important alert.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                <span class="badge badge-pill badge-success">Success</span>
+                                You successfully read this important alert.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                <span class="badge badge-pill badge-danger">Success</span>
+                                You successfully read this important alert.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">
+                                <span class="badge badge-pill badge-warning">Success</span>
+                                You successfully read this important alert.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-9">
+                    <!-- PAGE CONTENT-->
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <!-- RECENT REPORT-->
+                                <div class="recent-report3 m-b-40">
+                                    <div class="title-wrap">
+                                        <h3 class="title-3">recent reports</h3>
+                                        <div class="chart-info-wrap">
+                                            <div class="chart-note">
+                                                <span class="dot dot--blue"></span>
+                                                <span>Blue</span>
+                                            </div>
+                                            <div class="chart-note mr-0">
+                                                <span class="dot dot--green"></span>
+                                                <span>green</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="filters m-b-55">
+                                        <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
+                                            <select class="js-select2" name="property">
+                                                <option selected="selected">Products Sales</option>
+                                                <option value="">Products</option>
+                                                <option value="">Services</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                                            <select class="js-select2 au-select-dark" name="time">
+                                                <option selected="selected">All Time</option>
+                                                <option value="">By Month</option>
+                                                <option value="">By Day</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                    <div class="chart-wrap">
+                                        <canvas id="recent-rep3-chart"></canvas>
+                                    </div>
+                                </div>
+                                <!-- END RECENT REPORT-->
+                            </div>
+                            <div class="col-lg-4">
+                                <!-- CHART PERCENT-->
+                                <div class="chart-percent-3 m-b-40">
+                                    <h3 class="title-3 m-b-25">chart by %</h3>
+                                    <div class="chart-note m-b-5">
+                                        <span class="dot dot--blue"></span>
+                                        <span>products</span>
+                                    </div>
+                                    <div class="chart-note">
+                                        <span class="dot dot--red"></span>
+                                        <span>services</span>
+                                    </div>
+                                    <div class="chart-wrap m-t-60">
+                                        <canvas id="percent-chart2"></canvas>
+                                    </div>
+                                </div>
+                                <!-- END CHART PERCENT-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3" id="tableData">
+                                        <thead>
+                                            <tr>
+                                                <th>InvoiceNo</th>
+                                                <th>ServiceId</th>
+                                                <th>InvoiceDate</th>
+                                                <th>Discount</th>
+                                                <th>Total</th>
+                                                <th>Vat</th>
+                                                <th>Status</th>
+                                                <th>View</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.invoices)
+                                            {
+                                                <tr>
+                                                    <td>@item.invoiceNo</td>
+                                                    <td>@item.serviceID</td>
+                                                    <td>@item.invoiceDate</td>
+                                                    <td>@item.discount</td>
+                                                    <td>@item.totalAmount</td>
+                                                    <td>@item.vat</td>
+                                                    @if (item.status == false)
+                                                    {
+                                                        <td class="denied">Not Paid</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td class="process">Paid</td>
+                                                    }
+                                                    <td>
+                                                        @Html.ActionLink("View", "ViewInvoice", new { id = item.invoiceNo }, htmlAttributes: new { @class = "btn btn-primary" })
+
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.invoiceNo }, htmlAttributes: new { @class = "btn btn-danger" })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE                  -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAGE CONTENT-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Plugins/dataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="~/Plugins/dataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $('#tableData').dataTable();
+</script>
+
+<!-- END PAGE CONTENT  -->
